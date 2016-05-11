@@ -1,0 +1,61 @@
+﻿@{
+    var contributors = Model.Contributors;
+}
+<div class="repository">
+    <h2>@Model.Name</h2>
+    <hr class="hr-repository">
+    <p class="@(string.IsNullOrEmpty(Model.Description) ? "hidden" : "")">
+        <span><span class="fui-list"></span> Descrição: </span> @Model.Description
+    </p>
+    <p>
+        <span><span class="fui-time"></span> Atualização: </span> @Model.Updated
+    </p>
+    <p class="@(string.IsNullOrEmpty(Model.Language) ? "hidden" : "")">
+        <span><span class="fui-cmd"></span> Linguagem: </span> @Model.Language
+    </p>
+    <p>
+        <span><span class="fui-user"></span> Proprietário: </span>
+        <a href="@Url.RouteUrl("Repositories", new { user = Model.Owner.Login })" alt="@Model.Owner.Name" target="_top">
+            <img src="@Model.Owner.ProfilePictureUrl" class="owner-picture" title="@Model.Owner.Name" />
+        </a>
+    </p>
+    <p class="@(contributors.Count == 0 ? "hidden" : "")">
+        <span><span class="fui-check"></span> Contribuidores: </span>
+        @foreach (var contributor in contributors)
+        {
+            <a href="@Url.RouteUrl("Repositories", new { user = contributor.Login })" alt="@contributor.Name" target="_top">
+                <img src="@contributor.ProfilePictureUrl" class="contributor-picture" title="@contributor.Name" />
+            </a>
+        }
+    </p>
+    <hr class="hr-repository">
+    <div class="repository-btns">
+        @Ajax.RouteLink(" Marcar como Favorito", "Favorite",
+                new { user = Model.Owner.Login, repository = Model.Name },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            OnComplete = "$(\"#btn-favorite\").hide(); $(\"#btn-unfavorite\").show();"
+        }, new
+        {
+            @class = "btn btn-wide btn-success btn-favorite fui-heart",
+            @style = string.Format("display: {0};", Model.Favorite ? "none" : "inline"),
+            @id = "btn-favorite"
+        })
+
+        @Ajax.RouteLink(" Remover Favorito", "Unfavorite",
+                new { Id = Model.Id },
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            OnComplete = "$(\"#btn-unfavorite\").hide(); $(\"#btn-favorite\").show();"
+        }, new
+        {
+            @class = "btn btn-wide btn-danger fui-heart",
+            @style = string.Format("display: {0};", Model.Favorite ? "inline" : "none"),
+            @id = "btn-unfavorite"
+        })
+    </div>
+</div>

@@ -1,0 +1,72 @@
+body {
+	background-color: #ECF0F1;
+	color: #2C3E50;
+    margin-top: 10px;
+}
+
+hr {
+	border-top: 1px solid #95A5A6;
+}
+
+img {
+    border-radius: 50%;
+}
+
+.profile-picture {
+	width: 180px;
+	height: 180px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.hr-repository {
+	border-top: 1px dashed #95A5A6;
+}
+
+.repositories h3 {
+ margin-top: 18px;
+    color: #16a085;
+    font-weight: bold;
+}
+
+.repository h2 {
+    color: #16a085;
+    font-weight: bold;
+}
+
+.repository p {
+    margin-top: -10px;
+    font-size: 14px;
+    color: #16a085;
+}
+
+.repository span {
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+.repository-btns {
+    height: 50px;
+}
+
+.favorite, .not-favorite {
+    font-size: 40px;
+    margin-top: 10px;
+    color: #16a085;
+}
+
+.not-favorite {
+    color: #e6e7e7;
+}
+
+.contributor-picture {
+	width: 20px;
+	height: 20px;
+}
+
+.owner-picture {
+	width: 20px;
+	height: 20px;
+}

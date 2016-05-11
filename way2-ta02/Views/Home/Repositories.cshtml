@@ -1,0 +1,46 @@
+﻿<div class="row">
+    <div class="col-md-3 centered">
+        <img src="@ViewBag.User.ProfilePictureUrl" class="profile-picture">
+    </div>
+    <div class="col-md-9">
+        <h1>@ViewBag.User.Name</h1>
+        <span class="fui-user"></span> @ViewBag.User.Login<br />
+        <span class="fui-mail"></span> @ViewBag.User.Email<br />
+        <span class="fui-location"></span> @ViewBag.User.Location<br />
+    </div>
+</div>
+<hr />
+<div class="row">
+    @using (Html.BeginForm("User", "Home", FormMethod.Post, new { @class = "form-group" }))
+    {
+        <div class="col-md-8">
+            <div class="input-group input-group-hg input-group-rounded">
+                <input type="text" class="form-control" placeholder="Pesquisar" id="word" name="word" value="@ViewBag.Word">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn"><span class="fui-search"></span></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownList("searchType", ViewBag.FavoriteItens as IEnumerable<SelectListItem>, new { @class = " select-block mbl", @style = "display: none;", @onchange = "form.submit()" })
+        </div>
+    }
+</div>
+@foreach (var repository in Model)
+{
+    <hr class="hr-repository" />
+    <div class="row">
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 repositories">
+            <h3>@Html.RouteLink((string)repository.Name, "Repository", new { user = repository.Owner.Login, repository = repository.Name })</h3>         
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 @(repository.Favorite?"favorite":"not-favorite")">
+            <span class="fui-heart"></span>
+        </div>
+    </div>
+}
+@if (!string.IsNullOrEmpty(ViewBag.Message)) {
+    <hr class="hr-repository" />
+    <div class="row">
+        <h1>@ViewBag.Message</h1>
+    </div>
+}

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Way2 - Test Assessment 02</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/bootstrap/css/prettify.css" rel="stylesheet">
+    <link href="~/Content/css/flat-ui.css" rel="stylesheet">
+    <link href="~/Content/css/default.css" rel="stylesheet">
+    <link href="~/Content/css/fancybox.css" rel="stylesheet"-->
+    @Styles.Render("~/Content/css/app")
+</head>
+<body>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <!--script src="~/Content/js/jquery-1.8.3.min.js"></!--script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/bootstrap-select.js"></script>
+    <script src="~/Content/bootstrap/js/google-code-prettify/prettify.js"></script>
+    <script src="~/Content/js/fancybox.js"></script>
+    <script src="~/Content/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/js/default.js"></script-->
+    @Scripts.Render("~/Content/js/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
